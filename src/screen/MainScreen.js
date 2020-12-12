@@ -1,27 +1,32 @@
 import React from 'react'
-import {View, Text, StyleSheet, Button} from 'react-native'
+import {View, StyleSheet, FlatList } from 'react-native'
+import {DATA} from "../data";
+import {Post} from "../components/Post";
+import {MainScreenHeaderRight} from "../components/HeaderButtonApp";
 
 export const MainScreen = ({navigation}) => {
-    const goToPost = () => {
-        navigation.navigate('Post')
+    const openPostHandler = post => {
+        navigation.navigate('Post', { postId: post.id, date: post.date })
     }
 
     return (
         <View style={styles.center}>
-            <Text>Main Screen</Text>
-            <Button title='Go to post' onPress={goToPost} />
+            <FlatList
+                data={DATA}
+                keyExtractor={ post => post.id.toString() }
+                renderItem={ ({ item }) => <Post post={item} onOpen={openPostHandler } /> }
+            />
         </View>
     )
 }
 
 MainScreen.navigationOptions = {
-    headerTitle: 'Мой дневник'
+    headerTitle: 'Мой дневник',
+    headerRight: () => <MainScreenHeaderRight />
 }
 
 const styles = StyleSheet.create({
-    center: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+    wrapper: {
+        padding: 10
+    }
 });
