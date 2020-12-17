@@ -12,7 +12,7 @@ export const MainScreen = ({navigation}) => {
     return <PostList data={ DATA } onOpen={ openPostHandler } />
 }
 
-MainScreen.navigationOptions = {
+MainScreen.navigationOptions = ({ navigation }) => ({
     headerTitle: Platform.OS,
     headerRight: () => <HeaderButtonApp
         title='Take Photo'
@@ -22,6 +22,6 @@ MainScreen.navigationOptions = {
     headerLeft: () => <HeaderButtonApp
         title='Draw Menu'
         iconName='ios-menu'
-        onPress={ () => console.log('Press menu') }
+        onPress={ () => navigation.toggleDrawer()  }
     />
-}
+})

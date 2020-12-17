@@ -3,12 +3,15 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from "react-navigation-stack"
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+import { createDrawerNavigator } from "react-navigation-drawer"
 import {MainScreen} from "../screen/MainScreen";
 import {PostScreen} from "../screen/PostScreen";
 import {Platform} from "react-native-web";
 import {THEME} from "../theme";
 import {BookedScreen} from "../screen/BookedScreen";
 import {Ionicons} from "@expo/vector-icons";
+import {AboutScreen} from "../screen/AboutScreen";
+import {CreateScreen} from "../screen/CreateScreen";
 
 const navigatorOptions = {
     defaultNavigationOptions: {
@@ -46,20 +49,26 @@ const bottomTabsConfig = {
     }
 }
 
-const BottomNavigator =
-    Platform.OS === 'ios' ?
-        createBottomTabNavigator(bottomTabsConfig, {
-            tabBarOptions: {
-                activeTintColor: THEME.MAIN_COLOR,
-            }
- })
-:
-        createMaterialBottomTabNavigator(bottomTabsConfig, {
-            activeTintColor: '#FFF',
-            shifting: true,
-            barStyle: {
-                backgroundColor: THEME.MAIN_COLOR
-            }
+const androidBottomNavigator = createMaterialBottomTabNavigator(bottomTabsConfig, {
+    activeTintColor: '#FFF',
+    shifting: true,
+    barStyle: {
+        backgroundColor: THEME.MAIN_COLOR
+    }
 })
 
-export const AppNavigation = createAppContainer(BottomNavigator)
+const iosBottomNavigator = createBottomTabNavigator(bottomTabsConfig, {
+    tabBarOptions: {
+        activeTintColor: THEME.MAIN_COLOR,
+    }
+})
+
+const BottomNavigator = Platform.OS === 'ios' ? iosBottomNavigator : androidBottomNavigator
+
+const MainNavigator = createDrawerNavigator({
+    PostTabs : BottomNavigator,
+    About: AboutScreen,
+    Create: CreateScreen
+})
+
+export const AppNavigation = createAppContainer(MainNavigator)
