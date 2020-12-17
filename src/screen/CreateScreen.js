@@ -1,7 +1,6 @@
 import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 import {HeaderButtonApp} from "../components/HeaderButtonApp";
-import {AboutScreen} from "./AboutScreen";
 
 export const CreateScreen = ({}) => {
     return (

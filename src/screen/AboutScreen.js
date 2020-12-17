@@ -1,7 +1,6 @@
 import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 import {HeaderButtonApp} from "../components/HeaderButtonApp";
-import {BookedScreen} from "./BookedScreen";
 
 export const AboutScreen = ({}) => {
     return (
@@ -12,7 +11,7 @@ export const AboutScreen = ({}) => {
 }
 
 AboutScreen.navigationOptions = ({navigation}) => ({
-    headerTitle: 'О нас',
+    headerTitle: 'О приложении',
     headerLeft: () => <HeaderButtonApp
         title='Draw Menu'
         iconName='ios-menu'

@@ -74,9 +74,31 @@ const CreateNavigator = createStackNavigator({
 }, navigatorOptions)
 
 const MainNavigator = createDrawerNavigator({
-    PostTabs : BottomNavigator,
-    About: AboutNavigator,
-    Create: CreateNavigator
+    PostTabs : {
+        screen: BottomNavigator,
+        navigationOptions: {
+            drawerLabel: 'Главная'
+        }
+    },
+    Create: {
+        screen: CreateNavigator,
+        navigationOptions: {
+            drawerLabel: 'Создать пост'
+        }
+    },
+    About: {
+        screen: AboutNavigator,
+        navigationOptions: {
+            drawerLabel: 'О приложении'
+        }
+    }
+}, {
+    contentOptions: {
+        activeTintColor: THEME.MAIN_COLOR,
+        labelStyle: {
+            fontFamily: 'Ubuntu-Bold'
+        }
+    }
 })
 
 export const AppNavigation = createAppContainer(MainNavigator)

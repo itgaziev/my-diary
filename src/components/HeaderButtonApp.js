@@ -1,5 +1,4 @@
 import React from 'react'
-import {} from 'react-native'
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import {AppHeaderIcon} from "./AppHeaderIcon";
 
