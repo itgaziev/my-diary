@@ -10,32 +10,24 @@ import {THEME} from "../theme";
 import {BookedScreen} from "../screen/BookedScreen";
 import {Ionicons} from "@expo/vector-icons";
 
-const PostNavigator = createStackNavigator({
-    Main: MainScreen,
-    Post: {
-        screen: PostScreen
-    }
-}, {
-    initialRouteName: 'Main',
+const navigatorOptions = {
     defaultNavigationOptions: {
         headerStyle: {
             backgroundColor: Platform.OS === 'ios' ? '#FFF' : THEME.MAIN_COLOR
         },
         headerTintColor: Platform.OS === 'ios' ? THEME.MAIN_COLOR : '#FFF'
     }
-})
+}
+
+const PostNavigator = createStackNavigator({
+    Main: MainScreen,
+    Post: PostScreen
+}, navigatorOptions)
 
 const BookedNavigator = createStackNavigator({
     Booked: BookedScreen,
     Post: PostScreen
-}, {
-    defaultNavigationOptions: {
-        headerStyle: {
-            backgroundColor: Platform.OS === 'ios' ? '#FFF' : THEME.MAIN_COLOR
-        },
-        headerTintColor: Platform.OS === 'ios' ? THEME.MAIN_COLOR : '#FFF'
-    }
-})
+}, navigatorOptions)
 
 const bottomTabsConfig = {
     Post: {
