@@ -3,6 +3,7 @@ import {View, StyleSheet, FlatList } from 'react-native'
 import {DATA} from "../data";
 import {Post} from "../components/Post";
 import {HeaderButtonApp } from "../components/HeaderButtonApp";
+import {Platform} from "react-native-web";
 
 export const MainScreen = ({navigation}) => {
     const openPostHandler = post => {
@@ -21,7 +22,7 @@ export const MainScreen = ({navigation}) => {
 }
 
 MainScreen.navigationOptions = {
-    headerTitle: 'Мой дневник',
+    headerTitle: Platform.OS,
     headerRight: () => <HeaderButtonApp
         title='Take Photo'
         iconName='ios-camera'
